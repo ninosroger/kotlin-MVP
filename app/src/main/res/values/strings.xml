@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MVPDemo</string>
+
+    <string name="butterknife_title">JakeWharton/butterknife</string>
+    <string name="butterknife_url">https://github.com/JakeWharton/butterknife</string>
+    <string name="butterknife_content">Field and method binding for Android views which uses annotation processing to generate boilerplate code for you.\n\n
+        Eliminate findViewById calls by using @BindView on fields.\n
+        Group multiple views in a list or array. Operate on all of them at once with actions, setters, or properties.\n
+        Eliminate anonymous inner-classes for listeners by annotating methods with @OnClick and others.\n
+        Eliminate resource lookups by using resource annotations on fields.</string>
+    <string name="android_util_code_title">Blankj/AndroidUtilCode</string>
+    <string name="android_util_code_url">https://github.com/Blankj/AndroidUtilCode</string>
+    <string name="android_util_code_content">AndroidUtilCode is a powerful &amp; easy to use library for Android. This library encapsulates the functions that commonly used in Android development which have complete demo and unit test. By using it\'s encapsulated APIs, you can greatly improve the development efficiency. The program mainly consists of two modules which is utilcode, which is commonly used in development, and subutil which is rarely used in development, but the utils can be beneficial to simplify the main module. </string>
+    <string name="autolayout_title">hongyangAndroid/AndroidAutoLayout</string>
+    <string name="autolayout_url">https://github.com/hongyangAndroid/AndroidAutoLayout</string>
+    <string name="autolayout_content">[停止维护]Android屏幕适配方案，直接填写设计图上的像素尺寸即可完成适配，最大限度解决适配问题。</string>
+    <string name="glide_title">bumptech/glide</string>
+    <string name="glide_url">https://github.com/bumptech/glide</string>
+    <string name="glide_content">Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.</string>
+    <string name="rxandroid_title">ReactiveX/RxAndroid</string>
+    <string name="rxandroid_url">https://github.com/ReactiveX/RxAndroid</string>
+    <string name="rxandroid_content">Android specific bindings for RxJava 2.\n\n
+        This module adds the minimum classes to RxJava that make writing reactive components in Android applications easy and hassle-free. More specifically, it provides a Scheduler that schedules on the main thread or any given Looper.</string>
+    <string name="okhttp_title">square/okhttp</string>
+    <string name="okhttp_url">https://github.com/square/okhttp</string>
+    <string name="okhttp_content">An HTTP &amp; HTTP/2 client for Android and Java applications. For more information see the website and the wiki.</string>
+    <string name="retrofit_title">square/retrofit</string>
+    <string name="retrofit_url">https://github.com/square/retrofit</string>
+    <string name="retrofit_content">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+
+    <string name="listdata_status_has_more">load more</string>
+    <string name="listdata_status_no_more">done</string>
+    <string name="listdata_status_loading">Loading...</string>
+</resources>
