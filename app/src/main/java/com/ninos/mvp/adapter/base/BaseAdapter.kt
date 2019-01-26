@@ -226,21 +226,21 @@ abstract class BaseAdapter<VH : RecyclerView.ViewHolder, B, P : BasePresenter<*,
     fun loading() {
         STATUS = Const.STATUS_LOADING
         if (tvStatus != null) {
-            tvStatus!!.text = context!!.getString(R.string.listdata_status_loading)
+            tvStatus!!.text = context.getString(R.string.listdata_status_loading)
         }
     }
 
     fun hasMore() {
         STATUS = Const.STATUS_HASMORE
         if (tvStatus != null) {
-            tvStatus!!.text = context!!.getString(R.string.listdata_status_has_more)
+            tvStatus!!.text = context.getString(R.string.listdata_status_has_more)
         }
     }
 
     fun noMore() {
         STATUS = Const.STATUS_NOMORE
         if (tvStatus != null) {
-            tvStatus!!.text = context!!.getString(R.string.listdata_status_no_more)
+            tvStatus!!.text = context.getString(R.string.listdata_status_no_more)
         }
     }
 

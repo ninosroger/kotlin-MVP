@@ -1,4 +1,4 @@
-package com.ninos.mvp.ui.activity.base
+package com.ninos.mvp.ui.fragment.base
 
 import com.ninos.mvp.presenter.base.BasePresenter
 import com.ninos.mvp.view.base.SwipeRefreshView
@@ -7,7 +7,6 @@ import android.view.View
 import butterknife.BindView
 import com.blankj.utilcode.util.ConvertUtils
 import com.ninos.mvp.R
-import com.ninos.mvp.ui.fragment.base.ToolBarFragment
 
 /**
  * Created by ninos on 2017/6/1.
@@ -18,9 +17,6 @@ abstract class SwipeRefreshFragment<P : BasePresenter<*, *>> : ToolBarFragment<P
     lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
     private var mIsRequestDataRefresh = false
 
-    /**
-     * @param savedInstanceState 缓存数据
-     */
     override fun initThings(view: View) {
         super.initThings(view)
         trySetupSwipeRefresh()

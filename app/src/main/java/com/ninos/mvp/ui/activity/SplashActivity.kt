@@ -17,7 +17,7 @@ class SplashActivity : BaseActivity<SplashPresenter>(), SplashView {
     lateinit var imgSplash: ImageView
 
     override fun startAnim() {
-        var animation: Animation = AnimationUtils.loadAnimation(this, R.anim.splash)
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.splash)
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
             }

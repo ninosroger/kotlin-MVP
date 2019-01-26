@@ -27,7 +27,7 @@ class NavigateThreeFragment : BaseFragment<BasePresenter<*, *>>() {
     override fun provideLayoutId(): Int = R.layout.fragment_navigate_three
 
     override fun initListeners() {
-        fntClick!!.setOnClickListener { SPUtils.getInstance(Const.SHAREDPREFERENCES_NAME_FOR_APP).put(Const.SHAREDPREFERENCES_APP_NODE_ISNOTFIRST, true) }
+        fntClick.setOnClickListener { SPUtils.getInstance(Const.SHAREDPREFERENCES_NAME_FOR_APP).put(Const.SHAREDPREFERENCES_APP_NODE_ISNOTFIRST, true) }
         startActivity(RecyclerViewDemoActivity::class.java)
     }
 
