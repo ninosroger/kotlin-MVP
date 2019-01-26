@@ -2,7 +2,6 @@ package com.ninos.mvp.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ninos.mvp.R
@@ -43,7 +42,6 @@ class RecyclerViewDemoActivity : SwipeRecyclerViewActivity<RecyclerViewDemoPrese
     override fun initThings(savedInstanceState: Bundle?) {
         super.initThings(savedInstanceState)
         dataList.add(DataItem(getString(R.string.butterknife_title), getString(R.string.butterknife_url), getString(R.string.butterknife_content), Const.BUTTER_KNIFE_ICON))
-        dataList.add(DataItem(getString(R.string.autolayout_title), getString(R.string.autolayout_url), getString(R.string.autolayout_content), ""))
         dataList.add(DataItem(getString(R.string.glide_title), getString(R.string.glide_url), getString(R.string.glide_content), Const.GLIDE_ICON))
         dataList.add(DataItem(getString(R.string.rxandroid_title), getString(R.string.rxandroid_url), getString(R.string.rxandroid_content), ""))
         dataList.add(DataItem(getString(R.string.okhttp_title), getString(R.string.okhttp_url), getString(R.string.okhttp_content), ""))
@@ -58,30 +56,23 @@ class RecyclerViewDemoActivity : SwipeRecyclerViewActivity<RecyclerViewDemoPrese
      */
     override fun action() {
         super.action()
-        if (adapter!!.span == adapter!!.SPAN_COUNT_TWO) {
-            adapter!!.span = adapter!!.SPAN_COUNT_ONE
+        if (adapter.span == adapter.SPAN_COUNT_TWO) {
+            adapter.span = adapter.SPAN_COUNT_ONE
             imgAction.setImageResource(R.drawable.list_grid)
         } else {
-            adapter!!.span = adapter!!.SPAN_COUNT_TWO
+            adapter.span = adapter.SPAN_COUNT_TWO
             imgAction.setImageResource(R.drawable.list_linear)
         }
-        adapter!!.notifyItemRangeChanged(0, adapter!!.itemCount)
+        adapter.notifyItemRangeChanged(0, adapter.itemCount)
     }
 
     /**
      * 列表item点击事件
      */
     override fun onItemClick(view: View, position: Int, item: DataItem) {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putSerializable("itemData", item)
         startActivity(ItemContentActivity::class.java, bundle)
-    }
-
-    /**
-     * 当前view传递给presenter
-     */
-    override fun initAttachView() {
-        presenter!!.attachView(this)
     }
 
     /**
@@ -99,7 +90,7 @@ class RecyclerViewDemoActivity : SwipeRecyclerViewActivity<RecyclerViewDemoPrese
         refresh(false)
     }
 
-    override fun createPresenter(): RecyclerViewDemoPresenter? = RecyclerViewDemoPresenter()
+    override fun createPresenter(): RecyclerViewDemoPresenter = RecyclerViewDemoPresenter()
 
     override fun provideAdapter(): RecyclerViewDemoAdapter = RecyclerViewDemoAdapter(getContext())
 
@@ -107,10 +98,10 @@ class RecyclerViewDemoActivity : SwipeRecyclerViewActivity<RecyclerViewDemoPrese
      * item显示操作
      */
     override fun provideLayoutManager(): RecyclerView.LayoutManager {
-        var gridLayoutManager = GridLayoutManager(getContext(), 2)
+        val gridLayoutManager = GridLayoutManager(getContext(), 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int =
-                    if (adapter!!.span == adapter!!.SPAN_COUNT_TWO) 1 else 2
+                    if (adapter.span == adapter.SPAN_COUNT_TWO) 1 else 2
         }
         return gridLayoutManager
     }

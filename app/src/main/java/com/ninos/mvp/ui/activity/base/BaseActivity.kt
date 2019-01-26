@@ -2,29 +2,28 @@ package com.ninos.mvp.ui.activity.base
 
 import android.content.Context
 import android.content.Intent
-import android.support.design.widget.Snackbar
 import android.widget.Toast
 import com.ninos.mvp.presenter.base.BasePresenter
 import com.ninos.mvp.view.base.BaseView
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import butterknife.ButterKnife
-import com.zhy.autolayout.AutoLayoutActivity
 
 /**
  * Created by ninos on 2017/5/27.
  */
-abstract class BaseActivity<P : BasePresenter<*, *>> : AutoLayoutActivity(), BaseView {
+abstract class BaseActivity<P : BasePresenter<*, *>> : AppCompatActivity(), BaseView {
 
-    var presenter: P? = null
+    lateinit var presenter: P
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(provideLayoutId())
         ButterKnife.bind(this)
         this.presenter = createPresenter()
-        initAttachView()
+        this.presenter.attachView(this)
         initThings(savedInstanceState)
         initListeners()
     }
@@ -33,11 +32,6 @@ abstract class BaseActivity<P : BasePresenter<*, *>> : AutoLayoutActivity(), Bas
      * 获取布局文件
      */
     protected abstract fun provideLayoutId(): Int
-
-    /**
-     * attachView
-     */
-    abstract fun initAttachView()
 
     /**
      * 初始化事件监听者
@@ -52,20 +46,13 @@ abstract class BaseActivity<P : BasePresenter<*, *>> : AutoLayoutActivity(), Bas
     /**
      * 绑定Presenter
      */
-    abstract fun createPresenter(): P?
+    abstract fun createPresenter(): P
 
     /**
      * 显示Toast
      */
     override fun showToast(text: String) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-    }
-
-    /**
-     * 显示Snackbar
-     */
-    override fun showSnackbar(text: String) {
-        Snackbar.make(currentFocus, text, Snackbar.LENGTH_SHORT).show()
     }
 
     /**

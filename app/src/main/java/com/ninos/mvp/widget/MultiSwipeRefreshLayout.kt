@@ -20,7 +20,7 @@ class MultiSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs:
 
         mForegroundDrawable = a.getDrawable(R.styleable.MultiSwipeRefreshLayout_foreground)
         if (mForegroundDrawable != null) {
-            mForegroundDrawable!!.callback = this
+            mForegroundDrawable.callback = this
             setWillNotDraw(false)
         }
         a.recycle()

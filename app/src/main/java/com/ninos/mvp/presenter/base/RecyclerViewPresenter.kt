@@ -7,7 +7,7 @@ import com.ninos.mvp.view.base.LoadMoreView
 /**
  * Created by ninos on 2017/6/1.
  */
-abstract class RecyclerViewPresenter<M : BaseModel<*>, V : LoadMoreView> : BasePresenter<M, V>() {
+abstract class RecyclerViewPresenter<M : BaseModel, V : LoadMoreView> : BasePresenter<M, V>() {
 
     /**
      * 获取数据
@@ -25,10 +25,10 @@ abstract class RecyclerViewPresenter<M : BaseModel<*>, V : LoadMoreView> : BaseP
     fun setDataStatus(page: Int, count: Int, res: Res<*>) {
         if (true) {
             //没有更多了
-            view!!.noMore()
+            view.noMore()
         } else {
             //还有更多
-            view!!.hasMore()
+            view.hasMore()
         }
 
     }

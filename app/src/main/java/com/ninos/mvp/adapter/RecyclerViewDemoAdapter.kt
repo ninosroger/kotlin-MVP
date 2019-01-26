@@ -32,7 +32,7 @@ class RecyclerViewDemoAdapter(context: Context) : BaseAdapter<RecyclerViewDemoAd
     override fun createVH(parent: ViewGroup, viewType: Int, view: View): VHolder = VHolder(view)
 
     override fun bindData(holder: VHolder, position: Int) {
-        var dataItem = data[position]
+        val dataItem = data[position]
         if (span == SPAN_COUNT_ONE) {
             holder.cvGridItem.visibility = View.GONE
             holder.llLinearItem.visibility = View.VISIBLE
@@ -41,7 +41,6 @@ class RecyclerViewDemoAdapter(context: Context) : BaseAdapter<RecyclerViewDemoAd
             holder.llTvContent.text = dataItem.content
             Glide.with(context)
                     .load(dataItem.icon)
-                    .placeholder(R.drawable.noneimg)
                     .into(holder.llImgIcon)
         } else {
             holder.cvGridItem.visibility = View.VISIBLE
@@ -51,7 +50,6 @@ class RecyclerViewDemoAdapter(context: Context) : BaseAdapter<RecyclerViewDemoAd
             holder.cvTvContent.text = dataItem.content
             Glide.with(context)
                     .load(dataItem.icon)
-                    .placeholder(R.drawable.noneimg)
                     .into(holder.cvImgIcon)
         }
     }

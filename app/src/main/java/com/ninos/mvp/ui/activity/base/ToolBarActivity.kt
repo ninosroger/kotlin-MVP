@@ -34,12 +34,12 @@ abstract class ToolBarActivity<P : BasePresenter<*, *>> : BaseActivity<P>() {
     }
 
     private fun initToolBar() {
-        toolBar = findViewById(R.id.toolbar) as Toolbar
+        toolBar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
-        imgBack = findViewById(R.id.img_back) as ImageView
-        tvTitle = findViewById(R.id.tv_title) as TextView
-        imgAction = findViewById(R.id.img_action) as ImageView
-        appBar = findViewById(R.id.app_bar_layout) as AppBarLayout
+        imgBack = findViewById(R.id.img_back)
+        tvTitle = findViewById(R.id.tv_title)
+        imgAction = findViewById(R.id.img_action)
+        appBar = findViewById(R.id.app_bar_layout)
         if (canBack()) {
             imgBack.setOnClickListener { onBackPressed() }
         } else {
@@ -64,23 +64,19 @@ abstract class ToolBarActivity<P : BasePresenter<*, *>> : BaseActivity<P>() {
      * @param alpha 设置标题栏的透明度
      */
     protected fun setAppBarAlpha(alpha: Float) {
-        if (appBar != null) {
-            appBar.alpha = alpha
-        }
+        appBar.alpha = alpha
     }
 
     /**
      * 隐藏和显示Toolbar
      */
     protected fun hideOrShowToolbar(isHidden: Boolean) {
-        if (appBar != null) {
-            if (mIsHidden != isHidden) {
-                appBar.animate()
-                        .translationY((if (mIsHidden) 0 else -appBar.height).toFloat())
-                        .setInterpolator(DecelerateInterpolator(2f))
-                        .start()
-                mIsHidden = isHidden
-            }
+        if (mIsHidden != isHidden) {
+            appBar.animate()
+                    .translationY((if (mIsHidden) 0 else -appBar.height).toFloat())
+                    .setInterpolator(DecelerateInterpolator(2f))
+                    .start()
+            mIsHidden = isHidden
         }
     }
 

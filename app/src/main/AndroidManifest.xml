@@ -30,13 +30,14 @@
             android:name=".ui.activity.ItemContentActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 自适配所需 -->
+
+        <!--适配方案-->
         <meta-data
-            android:name="design_width"
-            android:value="768" />
+            android:name="design_width_in_dp"
+            android:value="360"/>
         <meta-data
-            android:name="design_height"
-            android:value="1280" />
+            android:name="design_height_in_dp"
+            android:value="640"/>
 
         <meta-data
             android:name="android.max_aspect"

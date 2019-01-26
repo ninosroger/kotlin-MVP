@@ -11,9 +11,10 @@ import com.ninos.mvp.R
 /**
  * Created by ninos on 2017/6/1.
  */
-abstract class SwipeRefreshActivity<P : BasePresenter<*,*>> : ToolBarActivity<P>(), SwipeRefreshView {
+abstract class SwipeRefreshActivity<P : BasePresenter<*, *>> : ToolBarActivity<P>(), SwipeRefreshView {
 
-    @BindView(R.id.swipe_refresh_layout) lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
+    @BindView(R.id.swipe_refresh_layout)
+    lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
     private var mIsRequestDataRefresh = false
 
     /**
@@ -25,11 +26,9 @@ abstract class SwipeRefreshActivity<P : BasePresenter<*,*>> : ToolBarActivity<P>
     }
 
     private fun trySetupSwipeRefresh() {
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.setColorSchemeResources(R.color.refresh_progress_3, R.color.refresh_progress_2, R.color.refresh_progress_1)
-            mSwipeRefreshLayout.setOnRefreshListener { requestDataRefresh() }
-            setProgressViewOffset(false, 0, ConvertUtils.dp2px(24F))
-        }
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.refresh_progress_3, R.color.refresh_progress_2, R.color.refresh_progress_1)
+        mSwipeRefreshLayout.setOnRefreshListener { requestDataRefresh() }
+        setProgressViewOffset(false, 0, ConvertUtils.dp2px(24F))
     }
 
     /**
@@ -43,11 +42,10 @@ abstract class SwipeRefreshActivity<P : BasePresenter<*,*>> : ToolBarActivity<P>
      * @param refreshing false 1秒后关闭刷新
      */
     override fun refresh(refreshing: Boolean) {
-        if (mSwipeRefreshLayout == null) return
         mIsRequestDataRefresh = refreshing
         if (!mIsRequestDataRefresh) {
             mIsRequestDataRefresh = false
-            mSwipeRefreshLayout.postDelayed({ if (mSwipeRefreshLayout != null) mSwipeRefreshLayout.isRefreshing = false }, 1000)
+            mSwipeRefreshLayout.postDelayed({ mSwipeRefreshLayout.isRefreshing = false }, 1000)
         } else {
             mSwipeRefreshLayout.isRefreshing = true
         }

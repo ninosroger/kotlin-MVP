@@ -5,6 +5,7 @@ import android.widget.ImageView
 import com.blankj.utilcode.util.SPUtils
 import com.ninos.mvp.R
 import com.ninos.mvp.network.Const
+import com.ninos.mvp.presenter.SplashPresenter
 import com.ninos.mvp.presenter.base.BasePresenter
 import com.ninos.mvp.ui.activity.RecyclerViewDemoActivity
 import com.ninos.mvp.ui.fragment.base.BaseFragment
@@ -13,7 +14,7 @@ import com.ninos.mvp.ui.fragment.base.BaseFragment
  * Created by ninos on 2017/6/10.
  */
 class NavigateThreeFragment : BaseFragment<BasePresenter<*, *>>() {
-    var fntClick: ImageView? = null
+    lateinit var fntClick: ImageView
 
     companion object {
         fun newInstance(): NavigateThreeFragment = Holder.instance
@@ -21,9 +22,6 @@ class NavigateThreeFragment : BaseFragment<BasePresenter<*, *>>() {
 
     private object Holder {
         val instance: NavigateThreeFragment = NavigateThreeFragment()
-    }
-
-    override fun initAttachView() {
     }
 
     override fun provideLayoutId(): Int = R.layout.fragment_navigate_three
@@ -34,9 +32,9 @@ class NavigateThreeFragment : BaseFragment<BasePresenter<*, *>>() {
     }
 
     override fun initThings(view: View) {
-        fntClick = view.findViewById(R.id.fnt_click) as ImageView?
+        fntClick = view.findViewById(R.id.fnt_click) as ImageView
     }
 
-    override fun createPresenter(): BasePresenter<*, *>? = null
+    override fun createPresenter(): BasePresenter<*, *> = SplashPresenter()
 
 }

@@ -14,11 +14,7 @@ import com.ninos.mvp.view.SplashView
  * Created by ninos on 2017/6/7.
  */
 class SplashActivity : BaseActivity<SplashPresenter>(), SplashView {
-    override fun initAttachView() {
-        presenter!!.attachView(this)
-    }
-
-    var imgSplash: ImageView? = null
+    lateinit var imgSplash: ImageView
 
     override fun startAnim() {
         var animation: Animation = AnimationUtils.loadAnimation(this, R.anim.splash)
@@ -27,13 +23,13 @@ class SplashActivity : BaseActivity<SplashPresenter>(), SplashView {
             }
 
             override fun onAnimationEnd(animation: Animation) {
-                presenter!!.navigate()
+                presenter.navigate()
             }
 
             override fun onAnimationRepeat(animation: Animation) {
             }
         })
-        imgSplash!!.startAnimation(animation)
+        imgSplash.startAnimation(animation)
     }
 
     override fun success(user: User) {
@@ -50,7 +46,7 @@ class SplashActivity : BaseActivity<SplashPresenter>(), SplashView {
 
     override fun initThings(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
-        imgSplash = findViewById(R.id.img_splash) as ImageView
+        imgSplash = findViewById(R.id.img_splash)
         startAnim()
     }
 

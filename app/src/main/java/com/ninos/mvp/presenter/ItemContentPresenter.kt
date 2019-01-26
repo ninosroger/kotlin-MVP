@@ -8,5 +8,5 @@ import com.ninos.mvp.view.ItemContentView
  * Created by ninos on 18-5-8.
  */
 class ItemContentPresenter : BasePresenter<ItemContentModel, ItemContentView>() {
-    override fun setModel(): ItemContentModel = ItemContentModel(this)
+    override fun setModel(): ItemContentModel = ItemContentModel()
 }

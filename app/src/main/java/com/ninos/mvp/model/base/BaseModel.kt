@@ -6,13 +6,7 @@ import rx.Subscription
 /**
  * Created by ninos on 2017/5/27.
  */
-abstract class BaseModel<P>(presenter: P) {
-
-    protected var presenter:P? = null
-
-    init {
-        this.presenter = presenter
-    }
+abstract class BaseModel {
 
     companion object {
 

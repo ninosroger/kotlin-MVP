@@ -12,6 +12,5 @@ class RecyclerViewDemoPresenter : RecyclerViewPresenter<RecyclerViewDemoModel, R
 
     }
 
-    override fun setModel() = RecyclerViewDemoModel(this)
-
+    override fun setModel() = RecyclerViewDemoModel()
 }

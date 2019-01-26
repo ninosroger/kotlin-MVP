@@ -66,22 +66,18 @@ abstract class ToolBarFragment<P : BasePresenter<*, *>> : BaseFragment<P>() {
      * @param alpha 设置标题栏的透明度
      */
     protected fun setAppBarAlpha(alpha: Float) {
-        if (appBar != null) {
-            appBar.alpha = alpha
-        }
+        appBar.alpha = alpha
     }
 
     /**
      * 隐藏和显示Toolbar
      */
     protected fun hideOrShowToolbar() {
-        if (appBar != null) {
-            appBar.animate()
-                    .translationY((if (mIsHidden) 0 else -appBar.height).toFloat())
-                    .setInterpolator(DecelerateInterpolator(2f))
-                    .start()
-            mIsHidden = !mIsHidden
-        }
+        appBar.animate()
+                .translationY((if (mIsHidden) 0 else -appBar.height).toFloat())
+                .setInterpolator(DecelerateInterpolator(2f))
+                .start()
+        mIsHidden = !mIsHidden
     }
 
     /**

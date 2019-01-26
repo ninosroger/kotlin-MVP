@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.SPUtils
 import com.ninos.mvp.R
 import com.ninos.mvp.adapter.NavigateViewPagerAdapter
 import com.ninos.mvp.network.Const
+import com.ninos.mvp.presenter.SplashPresenter
 import com.ninos.mvp.presenter.base.BasePresenter
 import com.ninos.mvp.ui.activity.base.BaseActivity
 import com.ninos.mvp.ui.fragment.NavigateOneFragment
@@ -19,8 +20,8 @@ import com.ninos.mvp.ui.fragment.NavigateTwoFragment
  * Created by ninos on 2017/6/7.
  */
 class NavigateActivity : BaseActivity<BasePresenter<*, *>>(), View.OnTouchListener, GestureDetector.OnGestureListener {
-    var viewPager: ViewPager? = null
-    var gestureDetecotr: GestureDetector? = null
+    lateinit var viewPager: ViewPager
+    lateinit var gestureDetecotr: GestureDetector
 
     override fun onShowPress(e: MotionEvent?) {
     }
@@ -31,7 +32,7 @@ class NavigateActivity : BaseActivity<BasePresenter<*, *>>(), View.OnTouchListen
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
         if (e1!!.x - e2!!.x > 120)
-            if (viewPager!!.currentItem == 2) {
+            if (viewPager.currentItem == 2) {
                 SPUtils.getInstance(Const.SHAREDPREFERENCES_NAME_FOR_APP).put(Const.SHAREDPREFERENCES_APP_NODE_ISNOTFIRST, true)
                 startActivity(RecyclerViewDemoActivity::class.java)
             }
@@ -45,25 +46,22 @@ class NavigateActivity : BaseActivity<BasePresenter<*, *>>(), View.OnTouchListen
 
     override fun provideLayoutId(): Int = R.layout.activity_navigate
 
-    override fun initAttachView() {
-    }
-
     override fun initListeners() {
     }
 
     override fun initThings(savedInstanceState: Bundle?) {
-        viewPager = findViewById(R.id.viewpager) as ViewPager?
-        var viewPagerAdapter = NavigateViewPagerAdapter(supportFragmentManager)
+        viewPager = findViewById(R.id.viewpager)
+        val viewPagerAdapter = NavigateViewPagerAdapter(supportFragmentManager)
         viewPagerAdapter.addFragment(NavigateOneFragment.newInstance(), "")
         viewPagerAdapter.addFragment(NavigateTwoFragment.newInstance(), "")
         viewPagerAdapter.addFragment(NavigateThreeFragment.newInstance(), "")
-        viewPager!!.adapter = viewPagerAdapter
-        viewPager!!.setOnTouchListener(this)
+        viewPager.adapter = viewPagerAdapter
+        viewPager.setOnTouchListener(this)
         gestureDetecotr = GestureDetector(this)
     }
 
-    override fun createPresenter(): BasePresenter<*, *>? = null
+    override fun createPresenter(): BasePresenter<*, *> = SplashPresenter()
 
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean = gestureDetecotr!!.onTouchEvent(event)
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean = gestureDetecotr.onTouchEvent(event)
 
 }

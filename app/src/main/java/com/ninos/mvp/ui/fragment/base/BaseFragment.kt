@@ -3,7 +3,6 @@ package com.ninos.mvp.ui.fragment.base
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -20,22 +19,17 @@ import android.view.LayoutInflater
  */
 abstract class BaseFragment<P : BasePresenter<*,*>> : Fragment(), BaseView {
 
-    var presenter: P? = null
+    lateinit var presenter: P
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(provideLayoutId(), container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(provideLayoutId(), container, false)
         ButterKnife.bind(this, view)
         this.presenter = createPresenter()
-        initAttachView()
+        this.presenter.attachView(this)
         initThings(view)
         initListeners()
         return view
     }
-
-    /**
-     * attachView
-     */
-    abstract fun initAttachView()
 
     /**
      * 获取布局文件d
@@ -56,20 +50,13 @@ abstract class BaseFragment<P : BasePresenter<*,*>> : Fragment(), BaseView {
     /**
      * 绑定Presenter
      */
-    abstract fun createPresenter(): P?
+    abstract fun createPresenter(): P
 
     /**
      * 显示Toast
      */
     override fun showToast(text: String) {
         Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
-    }
-
-    /**
-     * 显示Snackbar
-     */
-    override fun showSnackbar(text: String) {
-        Snackbar.make(activity.currentFocus, text, Snackbar.LENGTH_SHORT).show()
     }
 
     /**
@@ -82,13 +69,13 @@ abstract class BaseFragment<P : BasePresenter<*,*>> : Fragment(), BaseView {
     /**
      * 获取当前Context
      */
-    override fun getContext(): Context = activity
+    override fun getContext(): Context = activity!!
 
     /**
      * 显示输入法界面
      */
     override fun showSoftInput(v: View) {
-        val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_FORCED)
     }
 
@@ -96,7 +83,7 @@ abstract class BaseFragment<P : BasePresenter<*,*>> : Fragment(), BaseView {
      * 隐藏输入法界面
      */
     override fun hideSoftMethod(v: View) {
-        val inputMethodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(v.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
 
     }

@@ -9,7 +9,6 @@ import android.view.View
 interface BaseView {
     fun getContext(): Context
     fun showToast(text: String)
-    fun showSnackbar(text: String)
     fun startActivity(c: Class<*>)
     fun showSoftInput(v: View)
     fun hideSoftMethod(v: View)

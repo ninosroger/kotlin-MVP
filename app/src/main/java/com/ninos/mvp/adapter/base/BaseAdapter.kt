@@ -10,7 +10,6 @@ import com.ninos.mvp.R
 import com.ninos.mvp.network.Const
 import com.ninos.mvp.presenter.base.BasePresenter
 import com.ninos.mvp.widget.OnItemClickListener
-import com.zhy.autolayout.utils.AutoUtils
 
 /**
  * Created by ninos on 2017/5/31.
@@ -19,9 +18,9 @@ abstract class BaseAdapter<VH : RecyclerView.ViewHolder, B, P : BasePresenter<*,
 
     var mOnItemClickListener: OnItemClickListener<B>? = null   //点击事件
     var data: ArrayList<B> = ArrayList()                    //数据data
-    var inflater: LayoutInflater? = null
-    var context: Context? = null
-    var presenter: P? = null
+    var inflater: LayoutInflater
+    var context: Context
+    lateinit var presenter: P
 
     private var STATUS = Const.STATUS_HASMORE
     private var header: View? = null
@@ -31,7 +30,7 @@ abstract class BaseAdapter<VH : RecyclerView.ViewHolder, B, P : BasePresenter<*,
 
     private fun init() {
         if (isAddFooter) {
-            footer = inflater!!.inflate(R.layout.footer_recycleview, null)
+            footer = inflater.inflate(R.layout.footer_recycleview, null)
             tvStatus = footer!!.findViewById(R.id.tv_status) as TextView
         }
     }
@@ -132,23 +131,20 @@ abstract class BaseAdapter<VH : RecyclerView.ViewHolder, B, P : BasePresenter<*,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return when (viewType) {
             Const.VIEW_TYPE_HEADER -> {
-                AutoUtils.auto(header)
                 createVH(parent, viewType, header!!)
             }
             Const.VIEW_TYPE_FOOTER -> {
-                AutoUtils.auto(footer)
                 createVH(parent, viewType, footer!!)
             }
             else -> {
                 val view = LayoutInflater.from(context).inflate(provideItemLayoutId(), null)
-                AutoUtils.auto(view)
                 createVH(parent, viewType, view)
             }
         }
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        if (holder.itemViewType !== Const.VIEW_TYPE_HEADER && holder.itemViewType !== Const.VIEW_TYPE_FOOTER) {
+        if (holder.itemViewType != Const.VIEW_TYPE_HEADER && holder.itemViewType != Const.VIEW_TYPE_FOOTER) {
             if (mOnItemClickListener != null) {
                 holder.itemView.setOnClickListener { view -> mOnItemClickListener!!.onItemClick(view, if (header == null) position else position - 1, data[if (header == null) position else position - 1]) }
             } else {
@@ -272,8 +268,7 @@ abstract class BaseAdapter<VH : RecyclerView.ViewHolder, B, P : BasePresenter<*,
     fun getStatus(): Int = this.STATUS
 
     fun setFooter(isAddFooter: Boolean) {
-        var isAddFooter = isAddFooter
-        isAddFooter = isAddFooter
+        this.isAddFooter = isAddFooter
     }
 
     fun removeItem(b: B) {

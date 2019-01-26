@@ -13,13 +13,13 @@ import com.ninos.mvp.view.SplashView
  * Created by ninos on 2017/6/7.
  */
 class SplashPresenter : BasePresenter<SplashModel, SplashView>(), SplashView.SplashModelView {
-    override fun setModel() = SplashModel(this)
+    override fun setModel() = SplashModel()
 
     fun navigate() {
         if (!SPUtils.getInstance(Const.SHAREDPREFERENCES_NAME_FOR_APP).getBoolean(Const.SHAREDPREFERENCES_APP_NODE_ISNOTFIRST))
-            view!!.startActivity(NavigateActivity::class.java)
+            view.startActivity(NavigateActivity::class.java)
         else {
-            view!!.startActivity(RecyclerViewDemoActivity::class.java)
+            view.startActivity(RecyclerViewDemoActivity::class.java)
         }
     }
 
@@ -27,6 +27,6 @@ class SplashPresenter : BasePresenter<SplashModel, SplashView>(), SplashView.Spl
     }
 
     override fun loginError(msg: String) {
-        view!!.error(msg)
+        view.error(msg)
     }
 }

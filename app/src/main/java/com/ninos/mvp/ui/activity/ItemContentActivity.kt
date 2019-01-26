@@ -28,7 +28,6 @@ class ItemContentActivity : ToolBarActivity<ItemContentPresenter>() {
         content.text = dataItem.content
         Glide.with(getContext())
                 .load(dataItem.icon)
-                .placeholder(R.drawable.noneimg)
                 .into(icon)
     }
 
@@ -36,11 +35,8 @@ class ItemContentActivity : ToolBarActivity<ItemContentPresenter>() {
 
     override fun provideLayoutId(): Int = R.layout.activity_item_content
 
-    override fun initAttachView() {
-    }
-
     override fun initListeners() {
     }
 
-    override fun createPresenter(): ItemContentPresenter? = ItemContentPresenter()
+    override fun createPresenter(): ItemContentPresenter = ItemContentPresenter()
 }
